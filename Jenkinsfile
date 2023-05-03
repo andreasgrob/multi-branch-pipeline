@@ -22,7 +22,10 @@ pipeline {
     stage('checkout') {
       steps {
         container('git') {
-          checkout scm
+          checkout scmGit(
+    branches: [[name: '*/main']],
+    userRemoteConfigs: [[url: 'https://github.com/andreasgrob/multi-branch-pipeline']],
+    gitTool: '/usr/bin/git')
         }
       }
     }
