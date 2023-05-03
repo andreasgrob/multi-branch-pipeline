@@ -1,7 +1,18 @@
 pipeline {
   agent {
     kubernetes {
-      label 'app'  // all your pods will be named with this prefix, followed by a unique id
+      inheritFrom 'app'
+      yaml '''
+      apiVersion: v1
+      kind: Pod
+      spec:
+        containers:
+        - name: git
+          image: alpine/git:2.36.3
+          command:
+          - cat
+          tty: true
+'''
     }
   }
   options {
@@ -10,7 +21,9 @@ pipeline {
   stages {
     stage('checkout') {
       steps {
-        checkout scm
+        container('git') {
+          checkout scm
+        }
       }
     }
     stage('Test1') {
