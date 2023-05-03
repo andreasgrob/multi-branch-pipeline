@@ -8,7 +8,7 @@ pipeline {
       spec:
         containers:
         - name: git
-          image: alpine/git:2.36.3
+          image: bitnami/git:2.40.1
           command:
           - cat
           tty: true
