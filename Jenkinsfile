@@ -29,7 +29,7 @@ pipeline {
         }
       }
     }
-    stage('Test3') {
+    stage('Test4') {
       steps {
         sh '''
           java -version
