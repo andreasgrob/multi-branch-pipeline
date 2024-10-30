@@ -32,7 +32,7 @@ pipeline {
     stage('Test5') {
       steps {
         sh '''
-          java -version
+          sh build.sh
         '''
       }
     }
